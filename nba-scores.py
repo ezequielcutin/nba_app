@@ -24,15 +24,25 @@ def get_scoreboard():
         clock = game['clock']
         period = game['period']
         
-        print("-------------------")
+        print("------------------------")
         print(
             f"{home_team['triCode']} vs {away_team['triCode']}")
         if home_team['score'] == "" and home_team['score'] == "":
             print("Game not started yet")
+            print("")
+            
+        elif clock == "" and home_team['score'] == 0 and away_team['score'] == 0:
+            print("Game starting soon")
+            print("")
+        elif clock == "":
+            print(f"Final Score: {home_team['score']} - {away_team['score']}")
+            print("")
+           
             #FIGURE OUT WAY TO FIND GAME START TIME
         else:                        
             print(f"{home_team['score']} - {away_team['score']}")
             print(f"{clock} period {period['current']}")
+            print("")
 
 
 def get_stats():
@@ -41,6 +51,9 @@ def get_stats():
     
     teams = list(filter(lambda x: x['name'] != "Team", teams))
     #sort teams by rank in ppg
+    print("")
+    print("Teams ranked by average PPG all season")
+    print("--------------------------------------------")
     teams.sort(key=lambda x: int(x['ppg']['rank']))
     for i, team in enumerate(teams):
         name = team['name']
